@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Simple Map</title>
-        <meta charset="utf-8">
-            <link rel="stylesheet" href="css/style.css">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" shrink-to-fit="yes">
-                </head>
-                <body>
-                    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-                    <div id="mySidenav" class="sidenav">
-                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                        <input id="search" placeholder="Search.." data-bind="value: text, valueUpdate: 'keyup'" />
-                        <hr>
-                            <ul data-bind="foreach: filtered">
-                                <a href="#" data-bind="text: title, click: $root.eventOnClick"></a>
-                            </ul>
-                        </div>
-                        <div id="map"></div>
-                        <script src="js/jQuery.js"></script>
-                        <script src="js/knockout-3.4.2.js"></script>
-                        <script src='js/app.js'></script>
-                        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCODn63buZdco88ShwDdTaU8EVJLpQO4cI&v=3&callback=initMap" onerror="error()"></script>
-                    </body>
-                </html>
+<head>
+  <title>Simple Map</title>
+  <meta charset="utf-8">
+  <link href="css/style.css" rel="stylesheet">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+</head>
+<body>
+  <span onclick="openNav()" style="font-size:30px;cursor:pointer">&#9776;</span>
+  <div class="sidenav" id="mySidenav">
+    <a class="closebtn" href="javascript:void(0)" onclick="closeNav()">&times;</a> <input data-bind="value: text, valueUpdate: 'keyup'" id="search" placeholder="Search..">
+    <hr>
+    <div data-bind="foreach: filtered" style="margin-left: 2em">
+      <a data-bind="text: title, click: $root.eventOnClick" href="#"></a>
+    </div>
+  </div>
+  <div id="map"></div>
+  <script src="js/jQuery.js">
+  </script> 
+  <script src="js/knockout-3.4.2.js">
+  </script> 
+  <script src='js/app.js'>
+  </script> 
+  <script async defer onerror="error()" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCODn63buZdco88ShwDdTaU8EVJLpQO4cI&v=3&callback=initMap">
+  </script>
+</body>
+</html>
