@@ -1,6 +1,4 @@
-		var markers = [];
-		var map;
-        // array of locations. 
+		// array of locations. 
 		var locations = [{
 		        title: 'King Saud University',
 		        location: {
@@ -46,7 +44,10 @@
 		    document.getElementById("mySidenav").style.display = "none";
 		}
 
-            //display map 
+		//display map 
+		var markers = [];
+		var map;
+
 		function initMap() {
 		    map = new google.maps.Map(document.getElementById('map'), {
 		        center: {
@@ -56,7 +57,7 @@
 		        zoom: 11,
 		        mapTypeControl: false
 		    });
-            var bounds = new google.maps.LatLngBounds();
+		    var bounds = new google.maps.LatLngBounds();
 		    var largeInfowindow = new google.maps.InfoWindow();
 		    for (var i = 0; i < locations.length; i++) {
 		        var position = locations[i].location;
@@ -65,7 +66,6 @@
 		        var marker = new google.maps.Marker({
 		            map: map,
 		            position: position,
-		            id: locations[i].id,
 		            title: title,
 		            animation: google.maps.Animation.DROP
 
@@ -78,7 +78,7 @@
 		        locations[i].location = marker;
 		        marker.addListener('click', addListener);
 		    }
-            
+
 		    function addListener() {
 		        populateInfoWindow(this, largeInfowindow);
 		        this.setAnimation(google.maps.Animation.BOUNCE);
@@ -120,6 +120,7 @@
 		        });
 		    }
 		}
+
 		function viewModel() {
 		    this.text = ko.observable("");
 		    this.locations = ko.observableArray(locations);
@@ -127,17 +128,17 @@
 		        var filter = this.text().toLowerCase();
 		        if (!filter) {
 		            // to display all markers when search is empty .
-                    for (var i = 0; i < markers.length; i++) {
+		            for (var i = 0; i < markers.length; i++) {
 		                markers[i].setVisible(true);
 		            }
 		            return this.locations();
 		        } else {
-                     // to show markers you are serching for .
+		            // to show markers you are serching for .
 		            var hideMarkers = ko.utils.arrayFilter(this.locations(), function(locations) {
 		                return locations.title.toLowerCase().indexOf(filter) == -1;
 		            });
 		            return ko.utils.arrayFilter(this.locations(), function(locations) {
-                        for (var i = 0; i < hideMarkers.length; i++) {
+		                for (var i = 0; i < hideMarkers.length; i++) {
 		                    hideMarkers[i].location.setVisible(false);
 		                }
 		                return locations
@@ -145,9 +146,13 @@
 		            });
 		        }
 		    }, this);
-            //when click list location there is event map marker .
+		    //when click list location there is event map marker .
 		    this.eventOnClick = function(marker) {
 		        google.maps.event.trigger(marker.location, "click");
 		    };
 		}
 		ko.applyBindings(new viewModel());
+
+		function error() {
+		    alert('Error in google map');
+		}
