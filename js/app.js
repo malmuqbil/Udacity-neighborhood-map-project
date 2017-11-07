@@ -9,7 +9,7 @@
       }
   },
   {
-      title: 'The Boulevard Riyadh',
+      title: 'Boulevard Riyadh',
       location:
       {
           lat: 24.750647,
